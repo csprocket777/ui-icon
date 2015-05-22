@@ -99,6 +99,10 @@ export default Component.extend({
     }
   }),
   
+  _tooltipObserver: Ember.observer('tooltip', function() {
+      this._tooltipInit();
+  }),
+  
   _style: Ember.computed('_styleWidth', '_styleFontSize', 'color', function() {
     const propMap = [
       {key: '_styleWidth', value: 'width'},
@@ -124,6 +128,7 @@ export default Component.extend({
   _init: Ember.on('didInsertElement', function() {
     this._sizeObserver();
     this._circular();
+    this._tooltipObserver();
   })
 
 });
