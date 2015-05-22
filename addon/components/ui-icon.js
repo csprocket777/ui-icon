@@ -100,7 +100,8 @@ export default Component.extend({
   }),
   
   _tooltipObserver: Ember.observer('tooltip', function() {
-      this._tooltipInit();
+    this.$().tooltip('destroy');
+    this._tooltipInit();
   }),
   
   _style: Ember.computed('_styleWidth', '_styleFontSize', 'color', function() {
