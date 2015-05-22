@@ -72,6 +72,7 @@ export default Component.extend({
   tooltipDelay: 500,
   tooltipHtml: true,
   tooltipTrigger: 'hover',
+  tooltipContainer: false,
   tooltipTemplate: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
   _tooltipInit: Ember.on('didInsertElement', function() {
     let tooltip = this.get('tooltip');
@@ -81,7 +82,8 @@ export default Component.extend({
         tooltipDelay: delay,
         tooltipHtml: html,
         tooltipTrigger: trigger,
-        tooltipTemplate: template} = this.getProperties('tooltipPlacement', 'tooltipDelay','tooltipHtml','tooltipTrigger','tooltipTemplate');
+        tooltipTemplate: template,
+        tooltipContainer: container} = this.getProperties('tooltipPlacement', 'tooltipDelay','tooltipHtml','tooltipTrigger','tooltipTemplate', 'tooltipContainer');
       Ember.run.next( () => {
         try {
           this.$().tooltip({
@@ -90,7 +92,8 @@ export default Component.extend({
             html: html,
             trigger: trigger,
             placement: placement,
-            template: template
+            template: template,
+            container: container
           });
         } catch (e) {
           console.log('There was a problem setting up the tooltip on [' + this.get('elementId') + '], ensure Bootstrap\'s JS is included in the vendor JS.\n%o',e);
